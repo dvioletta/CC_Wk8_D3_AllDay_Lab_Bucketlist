@@ -13,8 +13,8 @@ const bucketContainer = document.querySelector("#bucket-container");
 const bucketContainerView = new InfoView(bucketContainer);
 bucketContainerView.bindEvents();
 
-const url = "http://localhost:3000/api/bucket"
-const bucket = new Bucket();
+const url = "http://localhost:3000/api/bucket";
+const bucket = new Bucket(url);
 bucket.bindEvents();
 bucket.getData();
 
