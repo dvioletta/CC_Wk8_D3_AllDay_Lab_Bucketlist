@@ -13,7 +13,7 @@ RequestHelper.prototype.post = function(payload) {
     body: JSON.stringify(payload),
     headers: { 'Content-Type': 'application/json'}
   })
-  .then((response) => response,json());
+  .then((response) => response.json());
 }
 
 module.exports = RequestHelper;

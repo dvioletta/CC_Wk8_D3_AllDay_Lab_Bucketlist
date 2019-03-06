@@ -1,0 +1,2 @@
+use bucket;
+db.dropDatabase();
