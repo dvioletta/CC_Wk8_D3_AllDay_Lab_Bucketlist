@@ -16,14 +16,19 @@ Bucket.prototype.bindEvents = function () {
 Bucket.prototype.postBucket = function(bucket) {
   this.request.post(bucket)
     .then((buckets) => {
-      PubSub.publish("InfoView:data-loaded", buckets)
-      console.log(buckets);
+      PubSub.publish("Bucket:data-loaded", buckets)
     })
     .catch(console.error);
 }
 
 
-Bucket.prototype.getData = function () {};
+Bucket.prototype.getData = function () {
+  this.request.get()
+  .then((buckets) => {
+    PubSub.publish("Bucket:data-loaded", buckets);
+  })
+  .catch(console.error);
+};
 
 
 

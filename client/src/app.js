@@ -1,5 +1,6 @@
 const FormView = require('./views/form_view')
 const InfoView = require('./views/info_view')
+const BucketDetailView = require('./views/bucket_detail_view')
 const Bucket = require('./models/bucket')
 
 
@@ -9,7 +10,7 @@ const bucketForm = document.querySelector("#bucket-form");
 const bucketFormView = new FormView(bucketForm);
 bucketFormView.bindEvents();
 
-const bucketContainer = document.querySelector("#bucket-container");
+const bucketContainer = document.querySelector("#list");
 const bucketContainerView = new InfoView(bucketContainer);
 bucketContainerView.bindEvents();
 

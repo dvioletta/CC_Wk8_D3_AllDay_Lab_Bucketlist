@@ -24,7 +24,6 @@ FormView.prototype.createBucket = function(form) {
 FormView.prototype.handleSubmit = function (evt) {
   evt.preventDefault();
   const newBucket = this.createBucket(evt.target);
-  console.log(newBucket);
   PubSub.publish("FormView:submit", newBucket);
 
   evt.target.reset()
