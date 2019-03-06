@@ -6,10 +6,16 @@ const Bucket = function (url) {
   this.request = new RequestHelper(this.url);
 };
 
+
+
 Bucket.prototype.bindEvents = function () {
+  PubSub.subscribe('BucketDetailView:list-delete-clicked', (evt) => {
+    this.deleteBucket(evt.detail);
+  });
+
   PubSub.subscribe("FormView:submit", (evt) =>{
   this.postBucket(evt.detail)
-  console.log(evt.detail);
+  //console.log(evt.detail);
   });
 };
 
@@ -30,9 +36,9 @@ Bucket.prototype.getData = function () {
   .catch(console.error);
 };
 
-Bucket.prototype.deleteBucket = function (bucketId) {
-  this.request.delete(bucketId)
-  .then((bucket) => {
+Bucket.prototype.deleteBucket = function (bucketID) {
+  this.request.delete(bucketID)
+  .then((buckets) => {
     PubSub.publish('Bucket:data-loaded', buckets)
   })
   .catch(console.error);

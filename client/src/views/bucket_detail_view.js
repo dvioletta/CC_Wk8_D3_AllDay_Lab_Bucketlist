@@ -6,7 +6,6 @@ const BucketDetailView = function (container) {
 
 
 BucketDetailView.prototype.render = function (bucket) {
-  console.log(bucket);
   const bucketContainer = document.createElement('div')
   bucketContainer.id = 'list';
 
@@ -19,8 +18,13 @@ BucketDetailView.prototype.render = function (bucket) {
   const date = this.createDetail('date', bucket.date);
   bucketContainer.appendChild(date);
 
-  const deleteButton = this.createDeleteButton(list._id);
-  bucketContainer.appendChild(deleteButton);
+  const button = document.createElement('button')
+  button.textContent = 'Delete';
+  bucketContainer.appendChild(button);
+
+  console.log(bucket);
+  this.deleteButton(button, bucket);
+
   this.container.appendChild(bucketContainer);
 };
 
@@ -36,15 +40,13 @@ BucketDetailView.prototype.createDetail = function (label, text) {
   return detail;
 };
 
-BucketDetailView.prototype.createDeleteButton = function (bucketID) {
-  const button = document.createElement('button');
-  button.classList.add('delete-btn');
-  button.value = bucketID;
-
+BucketDetailView.prototype.deleteButton = function (button, item) {
+  button.value = item._id;
   button.addEventListener('click', (evt) => {
+    evt.preventDefault();
     PubSub.publish('BucketDetailView:list-delete-clicked', evt.target.value);
   });
-  return button;
+
 }
 
 module.exports = BucketDetailView

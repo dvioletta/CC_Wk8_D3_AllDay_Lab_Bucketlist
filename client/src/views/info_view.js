@@ -4,7 +4,6 @@ const BucketDetailView = require('./bucket_detail_view');
 
 const InfoView = function(container) {
   this.container = container;
-  // console.log(this.container);
 };
 
 InfoView.prototype.bindEvents = function () {
@@ -16,8 +15,10 @@ InfoView.prototype.bindEvents = function () {
 
 InfoView.prototype.render = function (buckets) {
   this.container.innerHTML = '';
-  const bucketView = new BucketDetailView(this.container);
-  buckets.forEach((bucket) => bucketView.render(bucket));
+  buckets.forEach((bucket) => {
+    const bucketView = new BucketDetailView(this.container);
+    bucketView.render(bucket)
+  });
 };
 
 module.exports = InfoView;
