@@ -30,6 +30,12 @@ Bucket.prototype.getData = function () {
   .catch(console.error);
 };
 
-
+Bucket.prototype.deleteBucket = function (bucketId) {
+  this.request.delete(bucketId)
+  .then((bucket) => {
+    PubSub.publish('Bucket:data-loaded', buckets)
+  })
+  .catch(console.error);
+}
 
 module.exports = Bucket
